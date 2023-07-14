@@ -141,4 +141,5 @@ if demo_option == 'SelectSlider':
 
 st.header("Get data from Hari-ji website Sample!")
 import requests
-st.write(requests.get(url="http://hariharigg.pythonanywhere.com/?celsius=15"))
+data = requests.get(url="http://hariharigg.pythonanywhere.com/?celsius=15")
+st.write(data.content)
