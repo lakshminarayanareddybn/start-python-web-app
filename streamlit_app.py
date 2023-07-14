@@ -34,15 +34,7 @@ def demo_button(st):
     else:
         st.write('Goodbye')
 
-if demo_option == 'Checkbox':
-    demo_checkbox(st)
-    display_code(st, str(inspect.getsource(demo_checkbox)))
-
-if demo_option == 'Button':
-    demo_button(st)
-    display_code(st, str(inspect.getsource(demo_checkbox)))
-
-if demo_option == 'Radio':
+def demo_radio(st):
     st.header("Radio Sample!")
     genre = st.radio(
         "What\'s your favorite movie genre",
@@ -52,8 +44,8 @@ if demo_option == 'Radio':
         st.write('You selected comedy.')
     else:
         st.write("You didn\'t select comedy.")
-        
-if demo_option == 'Selectbox':
+    
+def demo_selectbox(st):
     st.header("Selectbox Sample!")
 
     option = st.selectbox(
@@ -62,8 +54,7 @@ if demo_option == 'Selectbox':
 
     st.write('You selected:', option)
 
-
-if demo_option == 'Multiselect':
+def demo_multiselect(st):
     st.header("Multiselect Sample!")
 
     options = st.multiselect(
@@ -73,7 +64,7 @@ if demo_option == 'Multiselect':
 
     st.write('You selected:', options)
 
-if demo_option == 'Slider':
+def demo_slider(st):
     st.header("Slider Sample!")
 
     age = st.slider('How old are you?', 0, 130, 25)
@@ -103,7 +94,7 @@ if demo_option == 'Slider':
         format="MM/DD/YY - hh:mm")
     st.write("Start time:", start_time)
 
-if demo_option == 'SelectSlider':
+def demo_select_slider(st):
     st.header("Select slider Sample!")
 
     color = st.select_slider(
@@ -119,6 +110,31 @@ if demo_option == 'SelectSlider':
         options=['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'],
         value=('red', 'blue'))
     st.write('You selected wavelengths between', start_color, 'and', end_color)
-
-
     
+if demo_option == 'Checkbox':
+    demo_checkbox(st)
+    display_code(st, str(inspect.getsource(demo_checkbox)))
+
+if demo_option == 'Button':
+    demo_button(st)
+    display_code(st, str(inspect.getsource(demo_button)))
+
+if demo_option == 'Radio':
+    demo_radio(st)
+    display_code(st, str(inspect.getsource(demo_radio)))
+        
+if demo_option == 'Selectbox':
+    demo_selectbox(st)
+    display_code(st, str(inspect.getsource(demo_selectbox)))
+
+if demo_option == 'Multiselect':
+    demo_multiselect(st)
+    display_code(st, str(inspect.getsource(demo_multiselect)))
+
+if demo_option == 'Slider':
+    demo_slider(st)
+    display_code(st, str(inspect.getsource(demo_slider)))
+
+if demo_option == 'SelectSlider':
+    demo_select_slider(st)
+    display_code(st, str(inspect.getsource(demo_select_slider)))
