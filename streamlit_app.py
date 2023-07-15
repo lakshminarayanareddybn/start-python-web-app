@@ -140,6 +140,10 @@ if demo_option == 'SelectSlider':
     display_code(st, str(inspect.getsource(demo_select_slider)))
 
 st.header("Get data from Hari-ji website Sample!")
+
 import requests
 data = requests.get(url="http://hariharigg.pythonanywhere.com/?celsius=15")
+st.write(data.content)
+
+data = requests.get(url="https://reqres.in/api/users?page=2")
 st.write(data.content)
