@@ -5,7 +5,7 @@ ip_address =  "127.0.0.1"
 port_number = "8083"
 
 def main():
-    st.title('Addition Calculator')
+    st.title('Calculator')
 
     num1 = st.number_input('Enter the first number:')
     num2 = st.number_input('Enter the second number:')
@@ -30,6 +30,7 @@ def main():
         num2 = 0
 
     if operation:
+        st.write(f"Calling send_request API with {num1}, {num2}, {operation}")
         response = send_request(num1, num2, operation)
         if response and response.status_code == 200:
             result = response.json()
