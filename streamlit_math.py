@@ -10,6 +10,7 @@ def main():
     num1 = st.number_input('Enter the first number:')
     num2 = st.number_input('Enter the second number:')
 
+    operation = None
     if st.sidebar.button('Add'):
         operation = "add"
 
@@ -22,12 +23,25 @@ def main():
     if st.sidebar.button('Divide'):
         operation = "divide"
 
-    response = send_request(num1, num2, operation)
-    if response and response.status_code == 200:
-        result = response.json()
-        st.success(f"Result: {result['result']}")
+    if st.sidebar.button('Table'):
+        operation = "table"
+        st.write("Ignoring Second number!!")
+        st.subheader(f"Table for {int(num1)}")
+        num2 = 0
+
+    if operation:
+        response = send_request(num1, num2, operation)
+        if response and response.status_code == 200:
+            result = response.json()
+            if isinstance(result['result'], list):
+                for item in result['result']:
+                    st.write(str(int(item)))
+            else:
+                st.success(f"Result: {result['result']}")
+        else:
+            st.error('Error occurred during the API call.')
     else:
-        st.error('Error occurred during the API call.')
+        st.warning('Enter input values and select the operation')
 
 def send_request(num1, num2, operation):
     url = f"http://{ip_address}:{port_number}/{operation}"

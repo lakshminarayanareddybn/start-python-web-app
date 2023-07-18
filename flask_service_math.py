@@ -40,5 +40,18 @@ def divide():
     result = num1 / num2
     return jsonify({'result': result})
 
+# Table API
+@app.route('/table', methods=['POST'])
+def table():
+    data = request.get_json()
+    num = data['num1']
+    if num <= 0:
+        return jsonify({'error': 'Table for zero or less is not allowed.'}), 400
+
+    table_list = []
+    for i in range(1,11):
+        table_list.append(num * i)
+    return jsonify({'result': table_list})
+
 if __name__ == '__main__':
     app.run(host="127.0.0.1", port=8083, debug=True)
