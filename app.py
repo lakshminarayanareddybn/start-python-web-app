@@ -1,49 +1,57 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+# Addition API
+@app.route('/add', methods=['POST'])
+def add():
+    data = request.get_json()
+    num1 = data['num1']
+    num2 = data['num2']
+    result = num1 + num2
+    return jsonify({'result': result})
 
-@app.route("/")
-def index():
-    return "This is Home Page"
+# Subtraction API
+@app.route('/subtract', methods=['POST'])
+def subtract():
+    data = request.get_json()
+    num1 = data['num1']
+    num2 = data['num2']
+    result = num1 - num2
+    return jsonify({'result': result})
 
-@app.route("/hello")
-def hello():
-    return "This is hello, world page"
-# static
+# Multiplication API
+@app.route('/multiply', methods=['POST'])
+def multiply():
+    data = request.get_json()
+    num1 = data['num1']
+    num2 = data['num2']
+    result = num1 * num2
+    return jsonify({'result': result})
 
-# @app.route("/Ajay")
-# def welcome():
-#     return "Welcome Ajay, what is your order"
+# Division API
+@app.route('/divide', methods=['POST'])
+def divide():
+    data = request.get_json()
+    num1 = data['num1']
+    num2 = data['num2']
+    if num2 == 0:
+        return jsonify({'error': 'Division by zero is not allowed.'}), 400
+    result = num1 / num2
+    return jsonify({'result': result})
 
-# @app.route("/C B Shukla")
-# def greet():
-#     return "Welcome C B Shulka ji, what is your plan for today"
+# Table API
+@app.route('/table', methods=['POST'])
+def table():
+    data = request.get_json()
+    num = data['num1']
+    if num <= 0:
+        return jsonify({'error': 'Table for zero or less is not allowed.'}), 400
 
-# dynamic
+    table_list = []
+    for i in range(1,11):
+        table_list.append(num * i)
+    return jsonify({'result': table_list})
 
-# @app.route('/<name>')
-# def namaskara(name):
-#     return f'welcome {name}. What would you like to order.'
-
-# # route param
-
-# @app.route('/post/<id>')
-# def show_post(id):
-#     return f'Post ID is: {id}'
-
-# @app.route('/product/<name>')
-# def get_prodcut(name):
-#     return 'Product is  :' + name
-
-# @app.route('/sale/<transaction_id>')
-# def get_sale(transaction_id = 0):
-#     return 'The trasaction is ' + str(transaction_id)
-
-# # multiple param
-# @app.route('/create/<first_name>/<last_name>')
-# def create(first_name=None, last_name=None):
-#     return 'Hello ' + first_name + last_name
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(host="127.0.0.1", port=8083, debug=True)
