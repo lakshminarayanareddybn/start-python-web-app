@@ -1,8 +1,8 @@
 import streamlit as st
 import requests
 
-ip_address =  "127.0.0.1"
-port_number = "8083"
+ip_address =  "lnr.pythonanywhere.com"
+# port_number = "8083"
 
 def main():
     st.title('Calculator')
@@ -45,7 +45,7 @@ def main():
         st.warning('Enter input values and select the operation')
 
 def send_request(num1, num2, operation):
-    url = f"http://{ip_address}:{port_number}/{operation}"
+    url = f"http://{ip_address}/{operation}"
     data = {
         "num1": num1,
         "num2": num2
